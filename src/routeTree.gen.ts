@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConsignRouteImport } from './routes/consign'
+import { Route as EditorialRouteImport } from './routes/editorial'
+import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as CarsIdRouteImport } from './routes/cars.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConsignRoute = ConsignRouteImport.update({
+  id: '/consign',
+  path: '/consign',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialRoute = EditorialRouteImport.update({
+  id: '/editorial',
+  path: '/editorial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsIdRoute = CarsIdRouteImport.update({
+  id: '/cars/$id',
+  path: '/cars/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/consign': typeof ConsignRoute
+  '/editorial': typeof EditorialRoute
+  '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/cars/$id': typeof CarsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/consign': typeof ConsignRoute
+  '/editorial': typeof EditorialRoute
+  '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/cars/$id': typeof CarsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/consign': typeof ConsignRoute
+  '/editorial': typeof EditorialRoute
+  '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/cars/$id': typeof CarsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/consign'
+    | '/editorial'
+    | '/inventory'
+    | '/login'
+    | '/register'
+    | '/cars/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/consign'
+    | '/editorial'
+    | '/inventory'
+    | '/login'
+    | '/register'
+    | '/cars/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/consign'
+    | '/editorial'
+    | '/inventory'
+    | '/login'
+    | '/register'
+    | '/cars/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConsignRoute: typeof ConsignRoute
+  EditorialRoute: typeof EditorialRoute
+  InventoryRoute: typeof InventoryRoute
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
+  CarsIdRoute: typeof CarsIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/consign': {
+      id: '/consign'
+      path: '/consign'
+      fullPath: '/consign'
+      preLoaderRoute: typeof ConsignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial': {
+      id: '/editorial'
+      path: '/editorial'
+      fullPath: '/editorial'
+      preLoaderRoute: typeof EditorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars/$id': {
+      id: '/cars/$id'
+      path: '/cars/$id'
+      fullPath: '/cars/$id'
+      preLoaderRoute: typeof CarsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConsignRoute: ConsignRoute,
+  EditorialRoute: EditorialRoute,
+  InventoryRoute: InventoryRoute,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
+  CarsIdRoute: CarsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
