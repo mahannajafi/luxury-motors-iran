@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConsignRouteImport } from './routes/consign'
 import { Route as EditorialRouteImport } from './routes/editorial'
 import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as CarsIdRouteImport } from './routes/cars.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +37,16 @@ const InventoryRoute = InventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CarsIdRoute = CarsIdRouteImport.update({
   id: '/cars/$id',
   path: '/cars/$id',
@@ -46,6 +58,8 @@ export interface FileRoutesByFullPath {
   '/consign': typeof ConsignRoute
   '/editorial': typeof EditorialRoute
   '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/cars/$id': typeof CarsIdRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +67,8 @@ export interface FileRoutesByTo {
   '/consign': typeof ConsignRoute
   '/editorial': typeof EditorialRoute
   '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/cars/$id': typeof CarsIdRoute
 }
 export interface FileRoutesById {
@@ -61,14 +77,38 @@ export interface FileRoutesById {
   '/consign': typeof ConsignRoute
   '/editorial': typeof EditorialRoute
   '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/cars/$id': typeof CarsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/consign' | '/editorial' | '/inventory' | '/cars/$id'
+  fullPaths:
+    | '/'
+    | '/consign'
+    | '/editorial'
+    | '/inventory'
+    | '/login'
+    | '/register'
+    | '/cars/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/consign' | '/editorial' | '/inventory' | '/cars/$id'
-  id: '__root__' | '/' | '/consign' | '/editorial' | '/inventory' | '/cars/$id'
+  to:
+    | '/'
+    | '/consign'
+    | '/editorial'
+    | '/inventory'
+    | '/login'
+    | '/register'
+    | '/cars/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/consign'
+    | '/editorial'
+    | '/inventory'
+    | '/login'
+    | '/register'
+    | '/cars/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +116,8 @@ export interface RootRouteChildren {
   ConsignRoute: typeof ConsignRoute
   EditorialRoute: typeof EditorialRoute
   InventoryRoute: typeof InventoryRoute
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
   CarsIdRoute: typeof CarsIdRoute
 }
 
@@ -109,6 +151,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InventoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cars/$id': {
       id: '/cars/$id'
       path: '/cars/$id'
@@ -124,6 +180,8 @@ const rootRouteChildren: RootRouteChildren = {
   ConsignRoute: ConsignRoute,
   EditorialRoute: EditorialRoute,
   InventoryRoute: InventoryRoute,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
   CarsIdRoute: CarsIdRoute,
 }
 export const routeTree = rootRouteImport
